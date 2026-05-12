@@ -1,50 +1,56 @@
-name: Build All
+name: Build and Release
 
 on:
   push:
     branches: [ "main" ]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build-linux:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
-          pip install pyinstaller
-      - name: Build Linux binary
-        run: |
-          pyinstaller --onefile --windowed --name "KolocPlayer" v0.3.0_gui.py
-      - name: Upload Linux binary
-        uses: actions/upload-artifact@v4
+      - run: pip install -r requirements.txt pyinstaller
+      - run: pyinstaller --onefile --windowed --name "KolocPlayer_linux" v0.3.0_gui.py
+      - uses: actions/upload-artifact@v4
         with:
-          name: KolocPlayer-Linux
-          path: dist/KolocPlayer
+          name: KolocPlayer_linux
+          path: dist/KolocPlayer_linux
 
   build-windows:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          pip install pyinstaller
-      - name: Build EXE
-        run: |
-          pyinstaller --onefile --windowed --name "KolocPlayer" v0.3.0_gui.py
-      - name: Upload EXE
-        uses: actions/upload-artifact@v4
+      - run: pip install -r requirements.txt pyinstaller
+      - run: pyinstaller --onefile --windowed --name "KolocPlayer_windows" v0.3.0_gui.py
+      - uses: actions/upload-artifact@v4
         with:
-          name: KolocPlayer-Windows
-          path: dist/KolocPlayer.exe
+          name: KolocPlayer_windows.exe
+          path: dist/KolocPlayer_windows.exe
+
+  release:
+    needs: [build-linux, build-windows]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: KolocPlayer_linux
+      - uses: actions/download-artifact@v4
+        with:
+          name: KolocPlayer_windows.exe
+      - uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v0.3.0
+          name: "KolocPlayer v0.3.0"
+          files: |
+            KolocPlayer_linux
+            KolocPlayer_windows.exe
