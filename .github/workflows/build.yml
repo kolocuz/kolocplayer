@@ -20,7 +20,7 @@ jobs:
           pip install python-appimage
       - name: Build AppImage
         run: |
-          python-appimage build app -p 3.11 -o KolocPlayer.AppImage v0.3.0_gui.py
+          python-appimage build app -p 3.11 v0.3.0_gui.py -o KolocPlayer.AppImage
       - name: Upload AppImage
         uses: actions/upload-artifact@v4
         with:
