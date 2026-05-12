@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-linux:
+    build-linux:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -17,15 +17,15 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
-          pip install python-appimage
-      - name: Build AppImage
+          pip install pyinstaller
+      - name: Build Linux binary
         run: |
-          python-appimage build app -p 3.11 v0.3.0_gui.py -o KolocPlayer.AppImage
-      - name: Upload AppImage
+          pyinstaller --onefile --windowed --name "KolocPlayer" v0.3.0_gui.py
+      - name: Upload Linux binary
         uses: actions/upload-artifact@v4
         with:
-          name: KolocPlayer-AppImage
-          path: KolocPlayer.AppImage
+          name: KolocPlayer-Linux
+          path: dist/KolocPlayer
 
   build-windows:
     runs-on: windows-latest
