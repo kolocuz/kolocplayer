@@ -3,4 +3,4 @@
 
 Я koloc=0
 
-tg : https://t.me/kolocer
+tg : https://t.me/kolocer (неактивный)
