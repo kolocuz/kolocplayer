@@ -17,7 +17,7 @@ jobs:
         with:
           python-version: '3.11'
       - run: pip install -r requirements.txt pyinstaller
-      - run: pyinstaller --onefile --windowed --name "KolocPlayer_linux" v0.3.0_gui.py
+      - run: pyinstaller --onefile --windowed --name "KolocPlayer_linux" v0.3.0_gui-hotfix.py
       - uses: actions/upload-artifact@v4
         with:
           name: KolocPlayer_linux
@@ -31,7 +31,7 @@ jobs:
         with:
           python-version: '3.11'
       - run: pip install -r requirements.txt pyinstaller
-      - run: pyinstaller --onefile --windowed --name "KolocPlayer_windows" v0.3.0_gui.py
+      - run: pyinstaller --onefile --windowed --name "KolocPlayer_windows" v0.3.0_gui-hotfix.py
       - uses: actions/upload-artifact@v4
         with:
           name: KolocPlayer_windows.exe
