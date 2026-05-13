@@ -11,7 +11,6 @@ import gc
 CONFIG_DIR = os.path.expanduser("~/.config/kolocplayer")
 CONFIG_FILE = os.path.join(CONFIG_DIR, "config.json")
 os.makedirs(CONFIG_DIR, exist_ok=True)
-
 TEXTS = {
     "ru": {
         "no_track": "Нет трека",
@@ -469,7 +468,7 @@ class MusicPlayer:
         """Открытие окна настроек и информации о программе"""
         self.settings_win = ctk.CTkToplevel(self.window)
         self.settings_win.title(self._("settings_title"))
-        self.settings_win.geometry("280x240")
+        self.settings_win.geometry("280x260")
         self.settings_win.resizable(False, False)
         
         self.settings_win.transient(self.window)
