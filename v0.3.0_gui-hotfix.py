@@ -52,7 +52,7 @@ TEXTS = {
         "error": "Error",
         "play_error": "Failed to play:",
         "github": "Open GitHub",
-        "github_url": "github.com"  # И тут тоже полную ссылку
+        "github_url": "car.com"  # машинки
     }
 }
 
@@ -116,11 +116,11 @@ class MusicPlayer:
     def __init__(self):
         self.config = load_config()
         
-        # Настройка темы
+        # темы
         ctk.set_appearance_mode("dark")
         self.lang = self.config.get("lang", "en")
         
-        # Чистая инициализация стандартного CustomTkinter окна
+        # хернЯ голимая
         self.window = ctk.CTk()
         self.window.title("KolocPlayer")
         self.window.geometry("340x190")
@@ -130,7 +130,7 @@ class MusicPlayer:
         self.accent = "#D4782F"
         self.slider_bg = "#3A3A3A"
         
-        # Один глобальный плеер на всё время работы
+        # спма херя
         self.player = Player()
         self.current_file = None
         self.is_playing = False
@@ -141,7 +141,7 @@ class MusicPlayer:
         
         self.player.volume = self.current_volume / 100
         
-        # Бегущая строка
+        # бегалка сверух
         self.marquee_text = TEXTS[self.lang]["no_track"]
         self.marquee_offset = 0
         self.marquee_running = False
@@ -547,3 +547,4 @@ if __name__ == "__main__":
     app = MusicPlayer()
     app.window.mainloop()
 
+# кто прочитал тому роналдо под подушкой желаю
