@@ -31,7 +31,7 @@ TEXTS = {
         "error": "Ошибка",
         "play_error": "Не удалось воспроизвести:",
         "github": "Открыть GitHub",
-        "github_url": "github.com"  # Укажите тут полную ссылку, например: github.com
+        "github_url": "car.com"  # машинки тут
     },
     "en": {
         "no_track": "No track",
@@ -52,7 +52,7 @@ TEXTS = {
         "error": "Error",
         "play_error": "Failed to play:",
         "github": "Open GitHub",
-        "github_url": "car.com"  # машинки
+        "github_url": "car.com"  # машинки и тут
     }
 }
 
